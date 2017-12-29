@@ -1,0 +1,98 @@
+html {
+  font-size: 10px;
+  font-family: 'Open Sans', sans-serif;
+}
+// VARIABLES //
+$light-grey: rgb(200, 200, 200);
+$dark-grey: rgb(55, 55, 55);
+$calc-border-grey: rgb(160, 160, 160);
+$light-orange: rgb(255, 125, 50);
+// MIXIN //
+@mixin backg-gradient($lighter, $darker){
+  background: $lighter; /* For browsers that do not support gradients */
+  background: -webkit-radial-gradient(circle, $lighter, $darker); /* Safari */
+  background: -o-radial-gradient(circle, $lighter, $darker); /* Opera 11.6 to 12.0 */
+  background: -moz-radial-gradient(circle, $lighter, $darker); /* Firefox 3.6 to 15 */
+  background: radial-gradient(circle, $lighter, $darker); /* Standard syntax */
+}
+
+body {
+  margin: 0px;
+  padding-top: 5rem;
+  background: $dark-grey;
+  min-width: 250px;
+}
+#calculator {
+  width: 240px;
+  height: 420px;
+  font-size: 2.1rem;
+  margin: auto;
+  border: rgb(120, 120, 120) 1px solid;
+  display: grid;
+  grid-template: repeat(7, 1fr) / repeat(4, 1fr);
+  -moz-box-shadow: 0 0 60px black;
+  -webkit-box-shadow: 0 0 60px black;
+  box-shadow: 0 0 60px black;
+  
+  & #display {
+    grid-area: 1/1/3/5;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    background: black;
+    color: white;
+    border: rgb(130, 130, 130) 1px solid;
+    & #output {
+      height: 60%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      overflow: hidden;
+      font-size: 2.2rem;
+    }
+    & #input{
+      height: 40%;
+      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+  }
+  & #clear {
+    grid-area: 3/1/4/3;
+  }
+  & #_0 {
+    grid-area: 7/1/8/3;
+  }
+  & #equals {
+    grid-area: 6/-2/8/-1;
+    padding-top: 4rem;
+    @include backg-gradient($light-orange,rgb(255, 100, 20));
+    &:active {
+      background:rgb(255, 100, 20);
+    }
+  }
+}//calculator
+.btn, #clear {
+  user-select: none;
+  text-align: center;
+  padding-top: 1.3rem;
+  border: rgb(130, 130, 130) solid 1px;
+  @include backg-gradient($light-grey,$calc-border-grey);
+  &:hover {
+    cursor: pointer;
+  }
+  &:active {
+    background: $calc-border-grey;
+  }
+}
+#footer {
+  padding-top: 3rem;
+  text-align: center;
+  font-size: 1.1rem;
+  & a {
+    color: $light-orange;
+    padding: 0rem 1rem;
+    text-decoration: none;
+  }
+}
